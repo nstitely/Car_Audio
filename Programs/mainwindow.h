@@ -16,6 +16,8 @@ class MainWindow : public QMainWindow
 
     QGridLayout grid;
 
+    void getEqualizer();
+
 public:
     explicit MainWindow(QWidget *parent = nullptr);
 
