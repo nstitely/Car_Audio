@@ -1,0 +1,13 @@
+ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+update_config=1
+country=US
+
+network={
+	ssid="Trevitz"
+	psk=94ea28c081f38050f72ac66cbd5dc2395682f5681db3c018578b240054f5d762
+}
+
+network={
+	ssid="Trevitz iPhone"
+	psk="danphone"
+}

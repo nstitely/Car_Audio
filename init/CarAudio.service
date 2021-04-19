@@ -1,0 +1,15 @@
+[Unit]
+Description=Launch the GUI
+After=network.target sound.target bluetooth.target dbus.service
+
+[Service]
+User=pi
+Group=pi
+Type=simple
+WorkingDirectory=/home/pi
+RemainAfterExit=true
+ExecStart=/bin/bash /home/pi/init/launch.sh
+TimeoutStopSec=1min
+
+[Install]
+WantedBy=multi-user.target

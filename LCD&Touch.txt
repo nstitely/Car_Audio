@@ -1,0 +1,16 @@
+MAX 4  3/16 --- 106.4mm
+MAX 7  5/16 --- 185.7mm
+
+MIN 3 13/16 --- 96.84mm
+MIN 6 13/16 --- 173.0mm
+
+http://boundarydevices.com/wp-content/uploads/2014/12/HSD070PWW1-B01.pdf
+Outline Dimension [mm]:  161.2  (Typ) x 105.5 (Typ)
+Display area [mm]:       150.72 (H)   x  94.2 (V)
+
+https://www.aliexpress.com/item/32959433467.html
+529 to 537  --> 150.72
+59 --> (W) 184
+26 --> (H) 109    
+
+https://www.aliexpress.com/item/32986421774.html

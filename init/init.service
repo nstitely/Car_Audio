@@ -1,0 +1,12 @@
+[Unit]
+Description=Boot and Shutdown scripts for Van Pi
+
+[Service]
+Type=oneshot           
+RemainAfterExit=true   
+ExecStart=/bin/bash /home/pi/init/start.sh
+ExecStop=/bin/bash /home/pi/init/stop.sh
+TimeoutStopSec=1min
+
+[Install]
+WantedBy=basic.target

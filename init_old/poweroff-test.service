@@ -1,0 +1,6 @@
+[Unit]
+Description=Check input for loss of power - shutdown
+
+[Service]
+type=oneshot
+ExecStart=/bin/bash /home/pi/init/poweroff-test.sh
