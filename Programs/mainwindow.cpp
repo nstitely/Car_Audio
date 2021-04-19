@@ -32,9 +32,17 @@ MainWindow::MainWindow(QWidget *parent)
     time->setFont(f);
 
     bright->setValue(100);
+
+    connect(volume, &VolumeController::setEqualizer, this, &MainWindow::getEqualizer);
 }
 
 void MainWindow::timerEvent(QTimerEvent *)
 {
     time->setText(QTime::currentTime().toString("H:mm:ss"));
+}
+
+void MainWindow::getEqualizer()
+{
+    // TODO: Add a custom QDialog which returns a 0 - 100% for bass, trebble, and balance
+    // TODO: Send the balance to the volume object, and the bass/trebble to the music player.
 }

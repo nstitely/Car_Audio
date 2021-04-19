@@ -21,7 +21,7 @@ class VolumeController : public QWidget
 {
     Q_OBJECT
     VolumeSlider front, rear;
-    QPushButton mute, btnUp, btnDn;
+    QPushButton mute, btnUp, btnDn, equalizer;
     Volume volume;
 
     void load();
@@ -29,6 +29,9 @@ class VolumeController : public QWidget
 
     const char *saveFile = "/home/pi/saved_volumes";
     // const char *saveFile = "saved_volumes";
+
+signals:
+    void setEqualizer();
 
 public:
     VolumeController(QWidget *parent = nullptr);

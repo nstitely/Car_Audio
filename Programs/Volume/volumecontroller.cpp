@@ -61,9 +61,12 @@ VolumeController::VolumeController(QWidget *parent)
     btnDn.setMinimumHeight(50);
     btnUp.setMinimumHeight(50);
     mute.setMinimumHeight(50);
+    equalizer.setMinimumHeight(50);
 
     mute.setText(tr("Mute"));
     mute.setCheckable(true);
+
+    equalizer.setText("Equalizer");
 
     auto l = new QGridLayout;
     setLayout(l);
@@ -75,12 +78,16 @@ VolumeController::VolumeController(QWidget *parent)
     l->addWidget(             &btnDn, 5,0, 1,2);
     l->addItem(new QSpacerItem(0,25), 6,0, 1,2);
     l->addWidget(              &mute, 7,0, 1,2);
+    l->addWidget(         &equalizer, 8,0, 1,2);
 
     connect(&front, &QSlider::valueChanged,
             this, [=](int vol) { volume.setVolume(0,vol); save(); });
 
     connect(&rear, &QSlider::valueChanged,
             this, [=](int vol) { volume.setVolume(1,vol); save(); });
+
+    connect(&equalizer, &QPushButton::clicked,
+            this, &VolumeController::setEqualizer);
 
     connect(&mute, &QPushButton::clicked, this, [=](){
         volume.toggleMute();
