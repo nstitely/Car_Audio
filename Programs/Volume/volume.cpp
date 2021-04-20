@@ -2,14 +2,19 @@
 
 #include <iostream>
 
+#include <QtGlobal>
+
 #include <unistd.h>                     //Needed for I2C port
+#ifdef Q_OS_LINUX
 #include <fcntl.h>                      //Needed for I2C port
 #include <sys/ioctl.h>                  //Needed for I2C port
 #include <linux/i2c-dev.h>              //Needed for I2C port
+#endif
 
 Volume::Volume()
 {
     for(int i = 0; i < amps; i++)
+#ifdef Q_OS_LINUX
     {
         //----- OPEN THE I2C BUS -----
         if ((file_i2c[i] = open("/dev/i2c-1", O_RDWR)) < 0)
@@ -18,7 +23,6 @@ Volume::Volume()
             std::cerr << "Failed to open the i2c bus: " << errno << " " << file_i2c[i] << std::endl;
             return;
         }
-
         if (ioctl(file_i2c[i], I2C_SLAVE, address[i]) < 0)
         {
             //ERROR HANDLING; you can check errno to see what went wrong
@@ -26,12 +30,19 @@ Volume::Volume()
             return;
         }
     }
+#else
+    {
+        file_i2c[i] = 0;
+    }
+#endif
 }
 
 Volume::~Volume()
 {
+#ifdef Q_OS_LINUX
     for(int i = 0; i < amps; i++)
         close(file_i2c[i]);
+#endif
 }
 
 void Volume::increaseVolumes(int delta)
@@ -165,9 +176,11 @@ void Volume::set(int speaker, int volume)
     if((speaker < 0) || (speaker >= amps) || (file_i2c[speaker] < 0))
         return;
 
-    //std::cout << "Vol CMD: " << speaker << " " << cmdvol << std::endl;
-
+#ifdef Q_OS_LINUX
     int ret = write(file_i2c[speaker], &cmdvol, 1);
     if(ret != 1)
         std::cerr << "Failed i2c write for volume! " << errno << " " << ret<< file_i2c[speaker] << std::endl;
+#else
+    std::cout << "Vol CMD: " << speaker << " " << cmdvol << std::endl;
+#endif
 }

@@ -27,9 +27,9 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(QT NAMES Qt6 Qt5 COMPONENTS Widgets REQUIRED)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets REQUIRED)
 
-add_executable(volume
-    main.cpp
-)
+#add_executable(volume
+#    main.cpp
+#)
 
 add_library(Volume
     volumecontroller.cpp
@@ -38,4 +38,4 @@ add_library(Volume
     volume.h
 )
 target_link_libraries(Volume PUBLIC Qt${QT_VERSION_MAJOR}::Widgets)
-target_link_libraries(volume PRIVATE Volume)
+#target_link_libraries(volume PRIVATE Volume)
