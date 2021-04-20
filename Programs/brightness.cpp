@@ -57,6 +57,7 @@ void Brightness::mouseReleaseEvent(QMouseEvent *ev)
 
 void Brightness::setBrightness(int vol)
 {
+#ifdef Q_OS_LINUX
     QFile f("/sys/class/pwm/pwmchip0/pwm0/duty_cycle");
     if(!f.open(QIODevice::WriteOnly))
     {
@@ -68,5 +69,6 @@ void Brightness::setBrightness(int vol)
     // meh. close enough.
     int out = std::max(100, 500 * vol);
     QTextStream o(&f);
-    o << out << endl;
+    o << out << Qt::endl;
+#endif
 }
