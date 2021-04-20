@@ -43,6 +43,6 @@ void MainWindow::timerEvent(QTimerEvent *)
 
 void MainWindow::getEqualizer()
 {
-    // TODO: Add a custom QDialog which returns a 0 - 100% for bass, trebble, and balance
-    // TODO: Send the balance to the volume object, and the bass/trebble to the music player.
+    // TODO: Add a custom QDialog which returns a 0 - 100% for bass, treble , and balance
+    // TODO: Send the balance to the volume object, and the bass/treble to the music player.
 }
