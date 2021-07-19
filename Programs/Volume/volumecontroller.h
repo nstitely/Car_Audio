@@ -27,8 +27,8 @@ class VolumeController : public QWidget
     void load();
     void save() const;
 
-    const char *saveFile = "/home/pi/saved_volumes";
-    // const char *saveFile = "saved_volumes";
+    // const char *saveFile = "/home/pi/saved_volumes";
+    const char *saveFile = "saved_volumes";
 
 signals:
     void setEqualizer();
