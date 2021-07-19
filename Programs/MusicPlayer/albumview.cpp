@@ -18,12 +18,16 @@ public:
 
     void updateGUI()
     {
+        // if album widgets is empty, there is nothing to update so return
+        if(albumWidgets.empty() == true)
+            return;
+
         delete parent->layout();
         auto *l = new QGridLayout;
         parent->setLayout(l);
 
         auto it = albumWidgets.begin();
-        for(int i = 0; true; i++)
+        for(int i = 0; i < albumWidgets.size(); i++)
         {
             for(int j = 0; j < 6; j++)
             {
