@@ -23,6 +23,8 @@ add_executable(Car_Audio
     mainwindow.h
     brightness.cpp
     brightness.h
+    equalizerdialog.h
+    equalizerdialog.cpp
 )
 
 target_link_libraries(Car_Audio PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Volume MusicPlayer)

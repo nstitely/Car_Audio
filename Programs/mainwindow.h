@@ -4,6 +4,7 @@
 #include <QLabel>
 #include <QMainWindow>
 #include <QGridLayout>
+#include <QDialog>
 
 class MainWindow : public QMainWindow
 {
@@ -17,12 +18,16 @@ class MainWindow : public QMainWindow
     QGridLayout grid;
 
     void getEqualizer();
+    void setLevels();
 
 public:
     explicit MainWindow(QWidget *parent = nullptr);
 
 private:
     void timerEvent(QTimerEvent *ev);
+    int balance = 50;
+    int bass = 50;
+    int treble = 50;
 };
 
 #endif // MAINWINDOW_H

@@ -2,9 +2,12 @@
 #include "brightness.h"
 #include "Volume/volumecontroller.h"
 #include "MusicPlayer/musicplayer.h"
+#include "equalizerdialog.h"
 
 #include <QTime>
 #include <QApplication>
+#include <QStyleHints>
+#include <QDesktopWidget>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -44,5 +47,21 @@ void MainWindow::timerEvent(QTimerEvent *)
 void MainWindow::getEqualizer()
 {
     // TODO: Add a custom QDialog which returns a 0 - 100% for bass, treble , and balance
+    EqualizerDialog dialog;
+    if (!QGuiApplication::styleHints()->showIsFullScreen() && !QGuiApplication::styleHints()->showIsMaximized()) {
+        const QRect availableGeometry = QApplication::desktop()->availableGeometry(&dialog);
+        dialog.resize(availableGeometry.width() / 3, availableGeometry.height() * 2 / 3);
+        dialog.move((availableGeometry.width() - dialog.width()) / 2,
+                    (availableGeometry.height() - dialog.height()) / 2);
+    }
+    dialog.exec();
+    dialog.getLevels(balance, bass, treble);
+
+
     // TODO: Send the balance to the volume object, and the bass/treble to the music player.
+}
+
+void MainWindow::setLevels()
+{
+
 }
