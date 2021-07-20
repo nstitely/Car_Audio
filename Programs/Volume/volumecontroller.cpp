@@ -149,3 +149,17 @@ void VolumeController::save() const
     in << rear.value();
     in << "\n";
 }
+
+void VolumeController::changeBalance(int balance)
+{
+    if(balance != m_balance)
+        set(balance);
+
+    return;
+}
+
+void VolumeController::set(int newBalance)
+{
+        m_balance = newBalance;
+        return;
+}

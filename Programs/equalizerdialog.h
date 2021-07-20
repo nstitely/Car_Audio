@@ -30,7 +30,9 @@ private slots:
 
 private:
     // values for balance, bass and treble respectively. (e.g. x is balance, y is bass, z is treble)
-    int x, y, z;
+    int x = 50;
+    int y = 50;
+    int z = 50;
     QLabel *balanceLabel;
     QLabel *bassLabel;
     QLabel *trebleLabel;

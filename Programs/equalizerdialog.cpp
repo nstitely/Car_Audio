@@ -12,31 +12,27 @@ EqualizerDialog::EqualizerDialog(QWidget *parent)
 
 
     QVBoxLayout *verticalLayout;
-    if (QGuiApplication::styleHints()->showIsFullScreen() || QGuiApplication::styleHints()->showIsMaximized()) {
-        QHBoxLayout *horizontalLayout = new QHBoxLayout(this);
-        QGroupBox *groupBox = new QGroupBox(QGuiApplication::applicationDisplayName(), this);
-        horizontalLayout->addWidget(groupBox);
-    }
+
 
     int frameStyle = QFrame::Sunken | QFrame::Panel;
 
     balanceLabel = new QLabel;
     balanceLabel->setFrameStyle(frameStyle);
     QPushButton *balanceBtn =
-            new QPushButton(tr("Balance"));
-    balanceLabel->setText(tr("%1%").arg(50));
+            new QPushButton(tr("Update Balance"));
+    balanceLabel->setText(tr("%1%").arg(x));
 
     bassLabel = new QLabel;
     bassLabel->setFrameStyle(frameStyle);
     QPushButton *bassBtn =
-            new QPushButton(tr("Bass"));
-    bassLabel->setText(tr("%1%").arg(50));
+            new QPushButton(tr("Update Bass"));
+    bassLabel->setText(tr("%1%").arg(y));
 
     trebleLabel = new QLabel;
     trebleLabel->setFrameStyle(frameStyle);
     QPushButton *trebleBtn =
-            new QPushButton(tr("Treble"));
-    trebleLabel->setText(tr("%1%").arg(50));
+            new QPushButton(tr("Update Treble"));
+    trebleLabel->setText(tr("%1%").arg(z));
 
 
 
@@ -60,6 +56,8 @@ EqualizerDialog::EqualizerDialog(QWidget *parent)
 
 }
 
+// setters for the new balance, bass, and treble levels.
+// also prevents users from inputting anything that isn't between 0-100%
 void EqualizerDialog::setBalance()
 {
     bool ok;
@@ -102,6 +100,7 @@ int EqualizerDialog::getTreble()
     return z;
 }
 
+// passes the balance, bass, and treble levels by reference from the main window to the dialog window so that when the user changes the values they get updated in the main window.
 void EqualizerDialog::getLevels(int &balance, int &bass, int &treble)
 {
     balance = x;
@@ -110,38 +109,3 @@ void EqualizerDialog::getLevels(int &balance, int &bass, int &treble)
     return;
 }
 
-
-
-/*
-
-MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent)
-    , time(new QLabel)
-    , volume(new VolumeController)
-    , player(new MusicPlayer)
-    , bright(new Brightness)
-{
-    grid.addWidget(             bright, 0, 0, 2, 1);
-    grid.addItem(new QSpacerItem(25,0), 0, 1, 2, 1);
-    grid.addWidget(             player, 0, 2, 2, 1);
-    grid.addItem(new QSpacerItem(25,0), 0, 3, 2, 1);
-    grid.addWidget(               time, 0, 4, 1, 1);
-    grid.addWidget(             volume, 1, 4, 1, 1);
-
-    grid.setMargin(50);
-
-    startTimer(100, Qt::PreciseTimer);
-
-    setCentralWidget(new QWidget);
-    centralWidget()->setLayout(&grid);
-
-    QFont f = QApplication::font();
-    f.setPointSize(48);
-    time->setFont(f);
-
-    bright->setValue(100);
-
-    connect(volume, &VolumeController::setEqualizer, this, &MainWindow::getEqualizer);
-}
-
-*/

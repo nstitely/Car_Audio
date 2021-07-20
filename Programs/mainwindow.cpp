@@ -46,22 +46,20 @@ void MainWindow::timerEvent(QTimerEvent *)
 
 void MainWindow::getEqualizer()
 {
-    // TODO: Add a custom QDialog which returns a 0 - 100% for bass, treble , and balance
+    // hides help button
+    QApplication::setAttribute(Qt::AA_DisableWindowContextHelpButton);
+
+    // creates a custom dialog
     EqualizerDialog dialog;
-    if (!QGuiApplication::styleHints()->showIsFullScreen() && !QGuiApplication::styleHints()->showIsMaximized()) {
-        const QRect availableGeometry = QApplication::desktop()->availableGeometry(&dialog);
-        dialog.resize(availableGeometry.width() / 3, availableGeometry.height() * 2 / 3);
-        dialog.move((availableGeometry.width() - dialog.width()) / 2,
-                    (availableGeometry.height() - dialog.height()) / 2);
-    }
+
     dialog.exec();
+
+    // returns and changes the default balance, bass, and treble levels.
     dialog.getLevels(balance, bass, treble);
 
 
-    // TODO: Send the balance to the volume object, and the bass/treble to the music player.
-}
-
-void MainWindow::setLevels()
-{
-
+    // sends the balance to the volume object and the base / treble to the music player object
+    volume->changeBalance(balance);
+    player->changeBass(bass);
+    player->changeTreble(treble);
 }

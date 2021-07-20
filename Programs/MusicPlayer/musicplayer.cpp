@@ -71,4 +71,34 @@ MusicPlayer::~MusicPlayer()
     delete p;
 }
 
+void MusicPlayer::changeBass(int newBass)
+{
+
+    if(newBass != m_bass)
+        setBass(newBass);
+
+    return;
+}
+
+void MusicPlayer::changeTreble(int newTreble)
+{
+
+    if(newTreble != m_treble)
+        setTreble(newTreble);
+
+    return;
+}
+
+void MusicPlayer::setBass(int level)
+{
+    m_bass = level;
+    return;
+}
+
+void MusicPlayer::setTreble(int level)
+{
+    m_treble = level;
+    return;
+}
+
 #include "musicplayer.moc"
